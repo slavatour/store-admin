@@ -1,0 +1,14 @@
+$(document).ready(function () {
+
+	Store.module("Categories.Models", function (Models, Store, Backbone, Marionette, $, _) {
+		Models.SubcategoryModel = Backbone.Model.extend({
+			defaults: {
+				id: null,
+				name: "noname",
+				serial_number: null,
+				parent_id: null
+			}
+		});
+	});
+
+});

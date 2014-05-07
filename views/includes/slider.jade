@@ -1,0 +1,18 @@
+div.row.sliderContainer
+
+	form.col-lg-4.pull-right.well(role="form")
+		div.form-group
+			label(for="sliderName") Slider name:
+			input#sliderName.form-control(type="text" name="sliderName" placeholder="enter name..." required)
+		div.form-group
+			label(for="sliderDesk") Slider desckription:
+			input#sliderDesk.form-control(type="text" name="sliderDesk" placeholder="enter desckription..." required)
+		div.form-group
+			label(for="sliderURL") Slider link:
+			input#sliderURL.form-control(type="text" name="sliderURL" placeholder="enter url..." required)
+		div.form-group
+			label(for="sliderImg") Input file
+			input#sliderImg(type="file" name="sliderImg" required)
+			p.help-block
+				| IMG or PNG recomended
+		button.btn.btn-default(type="submit") Submit

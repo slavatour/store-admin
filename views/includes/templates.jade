@@ -1,0 +1,107 @@
+script(type="text/template" id="categoriesCollectionTemplate")
+	div.categoriesTitle
+		h3 Categories list.
+		button.btn.btn-default.btn-xs.pull-right + add new
+	div.col-lg-12
+		div.panel-group#accordionCategories.categoriesContainerView
+			
+script(type="text/template" id="categoriesModelTemplate")
+	div.panel.panel-default
+		div.panel-heading
+			h4.panel-title
+				a(data-toggle="collapse" data-parent="#accordionCategories" href!="#<%= id %>")
+					<%= name %>
+				button.btn.btn-default.btn-xs.pull-right.deleteCategory(data-category-id!="<%= id %>") delete
+				button.btn.btn-default.btn-xs.pull-right.editCategory(data-category-id!="<%= id %>") edit
+				button.btn.btn-default.btn-xs.pull-right.addNewSubategory(data-category-id!="<%= id %>" data-toggle='modal' data-target='.bs-example-modal-lg') +add
+		div.panel-collapse.collapse(id!="<%= id %>")
+			div.panel-body(id!="<%= name %>")
+					<%= viewSubcategories() %>
+
+script(type="text/template" id="subcategoriesModelTemplate")
+	a(class="subcategoriesLink" data-toggle="modal" data-target=".bs-example-modal-lg" data-submodel-id="<%= id %>")
+		<%= name %>
+
+script(type="text/template" id="subcategoriesCollectionTemplate")
+	div
+
+script(type="text/template" id="loadingView")
+	div#spinner
+
+script(type="text/template" id="modalView")
+		div.modal-dialog.modal-lg
+			div.modal-content
+				div.modal-header
+					button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
+						| &times;
+					h4.modal-title#myModalLabel Edit <%= name %> subcategory.
+				div.modal-body
+					div.input-group
+						label(for="nameInput") Enter or change name:
+						input#nameInput.form-control(type="text" value!="<%= name %>")
+					div.input-group
+						label(for="serialInput") Enter or change serial:
+						input#serialInput.form-control(type="text" value!="<%= serial_number %>")
+				div.modal-footer
+					button(type="button" class="btn btn-default btn-xs" data-dismiss="modal") Close
+					button(type="button" class="btn btn-success btn-xs") Save
+					button.deleteSubcategory(type="button" class="btn btn-danger btn-xs") dalete
+
+script(type="text/template" id="modalSlider")
+		div.modal-dialog.modal-lg
+			div.modal-content
+				div.modal-header
+					button(type="button" class="close" data-dismiss="modal" aria-hidden="true")
+						| &times;
+					h4.modal-title#myModalLabel Edit: <%= name %>
+				div.modal-body
+					form.well(role="form")
+						div.form-group
+							label(for="sliderName") Slider name:
+							input#sliderName.form-control(type="text" name="sliderName" placeholder="enter name..." value!="<%= name %>" required)
+						div.form-group
+							label(for="sliderDesk") Slider description:
+							input#sliderDesk.form-control(type="text" name="sliderDesk" value!="<%= description %>" placeholder="enter desckription..." required)
+						div.form-group
+							label(for="sliderURL") Slider link:
+							input#sliderURL.form-control(type="text" name="sliderURL" value!="<%= url %>" placeholder="enter url..." required)
+						div.form-group
+							label(for="sliderImg") Input file
+							input#sliderImg(type="file" name="sliderImg" required)
+							p.help-block
+								| IMG or PNG recomended
+						button.btn.btn-default(type="submit") Submit
+
+				div.modal-footer
+					button(type="button" class="btn btn-default btn-xs" data-dismiss="modal") Close
+					button(type="button" class="btn btn-success btn-xs") Save
+					button.deleteSubcategory(type="button" class="btn btn-danger btn-xs") dalete
+
+script(type="text/template" id="templateSliderCompositeView")
+	div.col-lg-12.well#sliderLists
+		table.table.table-hover.table-condensed
+			thead
+				tr
+					th on/off
+					th number
+					th name
+					th desckription
+					th url link
+					th photo
+					th active
+					th
+			tbody
+		button.btn.btn-default.btn-xs.pull-right.addSliderBtn +add new
+
+script(type="text/template" id="templateSliderItemView")
+	td.switcher
+		<%= displayStatus() %>
+	td <%= number %>
+	td <%= name %>
+	td <%= description %>
+	td <%= url %>
+	td <%= img %>
+	td <%= active %>
+	td 
+		button.btn.btn-default.btn-xs.pull-right.editSliderBtn(data-toggle="modal" data-target=".bs-example-modal-lg") edit
+		button.btn.btn-default.btn-xs.pull-right.deleteSliderBtn delete
