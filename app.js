@@ -14,6 +14,7 @@ var http = require('http');
 var path = require('path');
 var i18n = require('i18next');
 var fs = require('fs');
+var sys = require('sys');
 var pg = require('pg');
 
 var CategoriesController = require('./controllers/CategoriesController');
@@ -40,6 +41,7 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(express.multipart({uploadDir:path.join(__dirname,'/files')})); //uploaded files path join
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(i18n.handle); //multilamguage modal, have to be after cookie, before router
@@ -117,7 +119,15 @@ app.get("/slider", function (req, res) {
 });
 
 app.put("/slider", function (req, res) {
+  sliderController.putSlider(req.body, req.files);
+  res.end();
+});
+
+app.post("/slider", function (req, res) {
+  console.log('req.body');
   console.log(req.body);
-  sliderController.putSlider(req.body);
+  console.log(req.files);
+
+  sliderController.saveSlider(req.body, req.files);
   res.end();
 });

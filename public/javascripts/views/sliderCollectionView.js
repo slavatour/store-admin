@@ -6,10 +6,13 @@ $(document).ready(function () {
 			itemView: Store.Slider.Views.SliderModelView,
 			itemViewContainer: "tbody",
 			events: {
-				"click .addSliderBtn"		: 		"addNewSlider"
+				"click .addSliderBtn"				: 		"addNewSlider"
 			},
 			addNewSlider: function (e) {
-				
+				var modal = new Store.Common.Views.ModalView({
+					template: '#modalNewSlider'
+				});
+				Store.modalRegion.show(modal);
 			}
 		});
 	});

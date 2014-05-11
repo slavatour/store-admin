@@ -7,7 +7,8 @@ $(document).ready(function () {
 			events: {
 				'click .editSliderBtn'				: 	'editSlider', 
 				'click .deleteSliderBtn'			: 	'deleteSlider',
-				'click .btn-toggle'					: 	'toggleDisplayStatus'
+				'click .btn-toggle'					: 	'toggleDisplayStatus',
+				"click .sliderPhoto"				: 	"showSliderPhoto"
 			},
 			templateHelpers: {
 				displayStatus: function () {
@@ -17,7 +18,7 @@ $(document).ready(function () {
 						activeOff = 'btn-default';
 					} else {
 						activeOn = 'btn-default';
-						activeOff = 'active danger';
+						activeOff = 'active btn-danger';
 					}
 					var content = '<div class="btn-group btn-toggle"><button class="btn btn-xs '+
 								activeOn+'">on</button><button class="btn btn-xs '+
@@ -39,6 +40,7 @@ $(document).ready(function () {
 			},
 			editSlider: function () {
 				var modal = new Store.Common.Views.ModalView({
+					template: '#modalEditSlider',
 					model: this.model
 				});
 				Store.modalRegion.show(modal);
@@ -56,6 +58,13 @@ $(document).ready(function () {
 					}
 				}
 				this.model.save();
+			},
+			showSliderPhoto: function () {
+				var modal = new Store.Common.Views.ModalView({
+					template: '#modalPhoto',
+					model: this.model
+				});
+				Store.modalRegion.show(modal);				
 			}
 		});
 	});

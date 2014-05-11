@@ -9,8 +9,8 @@ $(document).ready(function () {
 				description: '',
 				url: '',
 				img: '',
-				active: 'false',
-				display: 'false'
+				active: false,
+				display: false
 			},
 			initialize: function () {
 				this.id = this.get('id');	

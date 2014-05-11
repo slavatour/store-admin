@@ -2,6 +2,11 @@
 @color-menu-font-disactive: rgba(0, 0, 0,.5);
 @color-menu-font-hover: rgba(0, 0, 0,.9);
 
+.glyphicon {
+	text-decoration: none;
+	color: rgb(101, 101, 101)
+}
+
 a:hover {
 	cursor: pointer;
 }
@@ -26,26 +31,34 @@ body {
 			.active-button	
 		}
 	}
-	.contentContainer {
-		.indexContainer {
-			display: none;			
-		}
-		#categoriesContainer {
-			position: relative;
-			display: none;
-			.categoriesTitle {
-				padding: 0px 15px;
-				h3 {
-					display: inline-block;
-				}
-				button {
-					display: inline-block;
-					margin: 15px 0px;
+	.main {
+		margin: 0px 5px;
+		.contentContainer {
+			.indexContainer {
+				display: none;
+				margin: 0px 10px 10px 10px;	
+				#containerHighcharts {
+					width: 534px;
+					height: 400px;
+				}	
+			}
+			#categoriesContainer {
+				position: relative;
+				display: none;
+				.categoriesTitle {
+					padding: 0px 15px;
+					h3 {
+						display: inline-block;
+					}
+					button {
+						display: inline-block;
+						margin: 15px 0px;
+					}
 				}
 			}
-		}
-		.productsContainer {
-			display: none;
+			.productsContainer {
+				display: none;
+			}
 		}
 	}
 }
