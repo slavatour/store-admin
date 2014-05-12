@@ -29,13 +29,13 @@ $(document).ready(function () {
 			deleteSlider: function () {
 				// console.log(this.model);
 				this.model.destroy({
-					wait: true,
-					success: function (model, response) {
-						// console.log(model);
-					},
-					error: function (model, xhr, options) {
-						// console.log(xhr);
-					}
+					wait: true
+					// success: function (model, response) {
+					// 	// console.log(model);
+					// },
+					// error: function (model, xhr, options) {
+					// 	// console.log(xhr);
+					// }
 				});
 			},
 			editSlider: function () {

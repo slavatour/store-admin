@@ -118,16 +118,18 @@ app.get("/slider", function (req, res) {
   });
 });
 
-app.put("/slider", function (req, res) {
-  sliderController.putSlider(req.body, req.files);
+app.put("/slider/:id", function (req, res) {
+  sliderController.putSlider(req.params.id, req.body, req.files);
   res.end();
 });
 
 app.post("/slider", function (req, res) {
-  console.log('req.body');
-  console.log(req.body);
-  console.log(req.files);
-
   sliderController.saveSlider(req.body, req.files);
   res.end();
+});
+
+app.delete("/slider/:id", function (req, res) {
+  sliderController.deleteSlider(req.params.id);
+  res.header();
+  res.end(200);
 });

@@ -3,7 +3,7 @@ var pg = require('pg');
 exports.dbRepository = function (conString) {
 	var self = {};
 
-	self.detData = function (command, callbackFunction) {
+	self.actionData = function (command, callbackFunction) {
 		var client = new pg.Client(conString);
 		client.connect(function (err) {
 			if(err) {

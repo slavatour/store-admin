@@ -27,7 +27,7 @@ $(document).ready(function () {
 				}
 				$.ajax({
 					type: "PUT",
-					url: '/slider',
+					url: '/slider/'+this.model.get('id'),
 					data: fd,
 					processData: false,
 					contentType: false

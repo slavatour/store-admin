@@ -8,14 +8,13 @@ $(document).ready(function () {
 				name: '',
 				description: '',
 				url: '',
-				img: '',
+				img_name: '',
 				active: false,
 				display: false
 			},
 			initialize: function () {
 				this.id = this.get('id');	
 			},
-			url: 'slider',
 			urlRoot: 'slider'
 		});
 	});
