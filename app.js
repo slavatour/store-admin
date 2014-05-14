@@ -131,5 +131,5 @@ app.post("/slider", function (req, res) {
 app.delete("/slider/:id", function (req, res) {
   sliderController.deleteSlider(req.params.id);
   res.header();
-  res.end(200);
+  res.end();
 });

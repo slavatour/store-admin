@@ -17,34 +17,8 @@ $(document).ready(function () {
 			$('.contentContainer > div').css('display', 'none');
 			$('#categoriesContainer').fadeIn();
 
-			var subcategoriesController = new Store.Categories.Controllers.SubcategoriesController();
-			// subcategoriesController();
-
-			var categoriesCollection = new Store.Categories.Collections.CategoriesCollection();
-			var subcategoriesCollection = new Store.Categories.Collections.SubcategoriesCollection();
-
-			var viewCategoriesListController = new Store.Categories.Controllers.ViewCategoriesListController({
-				regions: Store.categoriesRegion,
-				collection: categoriesCollection,
-				subcollection: subcategoriesCollection
-			});
-
-			viewCategoriesListController.fetchCategories(function (collection) {
-				viewCategoriesListController.fetchSubcategories(function (subcollection) {
-					viewCategoriesListController.pasteSubcategories(collection, subcollection, function (collectionReady) {
-						var categoriesCollectionView = new Store.Categories.Views.CategoryCollectionView({
-							collection: collectionReady
-						});
-						var loading = new Store.Common.Views.Loading();
-						Store.categoriesRegion.show(loading);
-						setTimeout(function () {
-							Store.categoriesRegion.show(categoriesCollectionView);
-						},1000);
-					});
-				});
-
-				
-			});
+			var categoriesController = new Store.Categories.Controllers.CategoriesController();
+			categoriesController.renderView();
 			
 		},
 		showProducts: function () {

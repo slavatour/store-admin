@@ -6,7 +6,8 @@ $(document).ready(function () {
 				id: null,
 				name: "noname",
 				serial_number: null,
-				parent_id: null
+				parent_id: null,
+				products: null
 			}
 		});
 	});

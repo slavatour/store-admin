@@ -8,22 +8,19 @@ $(document).ready(function () {
 			},
 			templateHelpers: {
 				viewSubcategories: function () {
-					// var content = "";
-					// if(this.subcategories) {
-					// 	_.each( this.subcategories.toJSON(), function (model) {
-					// 		content += "<a class='subcategoriesLink' data-toggle='modal'"+
-					// 		" data-target='.bs-example-modal-lg' data-submodel-id='"+
-					// 		model.id+"'>"+model.name;
-					// 	});	
-					// } else {
-					// 	content = 'There are no any subcategories in this category.';
-					// }
-					// return content;
-					// console.log(this.subcategories);
+					var content = "";
+					if(this.subcategories) {
+						_.each( this.subcategories.toJSON(), function (model) {
+							content += "<a class='subcategoriesLink' data-toggle='modal'"+
+							" data-target='.bs-example-modal-lg' data-submodel-id='"+
+							model.id+"'>"+model.name;
+						});	
+					} else {
+						content = 'There are no any subcategories in this category.';
+					}
+					return content;
+					console.log(this.subcategories);
 				}
-			},
-			onRender: function () {
-				
 			},
 			events: {
 				'click .subcategoriesLink': 'openModal'
@@ -38,9 +35,6 @@ $(document).ready(function () {
 					model: submodel
 				});
 				Store.modalRegion.show(modalView);
-			},
-			change: function () {
-				console.log('model changed!');
 			}
 		});
 	});

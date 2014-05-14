@@ -8,14 +8,12 @@ $(document).ready(function () {
 				'click .saveNewSliderBtn'			: 	'saveNewSlider'
 			},
 			initialize: function () {
-				// if(this.model) {
-				// 	this.template = "#modalEditSlider";
-				// } else {
-				// 	this.template = "#modalNewSlider";
-				// }
+
 			},
 			saveSliderChanges: function (e) {
 				e.preventDefault();
+				var collectionSliders = Store.request('slider:collection');
+				var collectionSlidersView = Store.request('slider:collectionView');
 				var fd = new FormData();
 				var file = this.$el.find('#sliderImgEdit')[0].files[0];
 				fd.append('id', this.model.get('id'));
@@ -32,12 +30,15 @@ $(document).ready(function () {
 					processData: false,
 					contentType: false
 				});
+				setTimeout(function () {
+					collectionSliders.fetch();
+				},2500);
 				$('#editModal').modal('hide');
 			},
 			saveNewSlider: function (e) {
 				e.preventDefault();
-				var modelSlider = Store.request('slider:model');
 				var collectionSliders = Store.request('slider:collection');
+				var collectionSlidersView = Store.request('slider:collectionView');
 				var fd = new FormData();
 				fd.append('name', this.$el.find('#sliderName').val());
 				fd.append('description', this.$el.find('#sliderDesc').val());
@@ -48,12 +49,14 @@ $(document).ready(function () {
 					url: '/slider',
 					data: fd,
 					processData: false,
-					contentType: false
+					contentType: false,
 				});
-				// collectionSliders.add(modelSlider);
-
+				setTimeout(function () {
+					collectionSliders.fetch();
+				},500);
 				$('#editModal').modal('hide');
 			}
+
 		});
 	});
 

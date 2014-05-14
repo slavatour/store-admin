@@ -30,6 +30,7 @@ $(document).ready(function () {
 			},
 			renderView: function () {
 				this.slidersCollection.fetch();
+				this.slidersCollection.sort();
 				Store.sliderRegion.show(this.slidersCollectionView);	
 			}
 			

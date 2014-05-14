@@ -1,12 +1,18 @@
 $(document).ready(function () {
 
 	Store.module("Categories.Controllers", function (Controllers, Store, Backbone, Marionette, $, _) {
-		Controllers.ViewCategoriesListController = Marionette.Controller.extend({
+		Controllers.CategoriesController = Marionette.Controller.extend({
 			initialize: function () {
 				this.categoryModel = new Store.Categories.Models.CategoryModel();
-				this.categoriesCollection = new Store.Categories.Collections.CategoriesCollection();
-				this.categoryModelView = new Store.Categories.Views.CategoryModelView();
-				this.categoriesCollectionView = new Store.Categories.Views.CategoryCollectionView();
+				this.categoriesCollection = new Store.Categories.Collections.CategoriesCollection({
+					model: this.categoryModel
+				});
+				this.categoryModelView = new Store.Categories.Views.CategoryModelView({
+					model: this.categoryModel
+				});
+				this.categoriesCollectionView = new Store.Categories.Views.CategoryCollectionView({
+					collection: this.categoriesCollection
+				});
 				Store.reqres.setHandler("category:model", function () {
 					return this.categoryModel;
 				},this);
@@ -20,34 +26,9 @@ $(document).ready(function () {
 					return this.categoriesCollectionView;
 				},this);
 			},
-			fetchCategories: function (callbackFunction) {
-				this.collection.fetch({
-					success: function (data) {
-						callbackFunction(data);
-					}
-				});
-			},
-			fetchSubcategories: function (callbackFunction) {
-				this.subcollection.url = this.subcollection.url+'/parent_id/all';
-				this.subcollection.fetch({
-					success: function (data) {
-						callbackFunction(data);
-					}
-				});
-			},
-			pasteSubcategories: function (collection, subcollection, callbackFunction) {
-				var newCollection = new Store.Categories.Collections.CategoriesCollection();
-				var categories = collection;
-				_.forEach(collection.toJSON(), function (model) {
-					var subcategoriesCollectin = new Store.Categories.Collections.SubcategoriesCollection();
-					var el = _.filter(subcollection.toJSON(), function (submodel) {
-						return model.id == submodel.parent_id;
-					});
-					subcategoriesCollectin.add(el);
-					model.subcategories = subcategoriesCollectin;
-					newCollection.push(model);
-				});
-				callbackFunction(newCollection);
+			renderView: function () {
+				this.categoriesCollection.fetch();
+				Store.categoriesRegion.show(this.categoriesCollectionView);	
 			}
 		});
 	});

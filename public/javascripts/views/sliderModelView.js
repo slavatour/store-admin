@@ -8,7 +8,8 @@ $(document).ready(function () {
 				'click .editSliderBtn'				: 	'editSlider', 
 				'click .deleteSliderBtn'			: 	'deleteSlider',
 				'click .btn-toggle'					: 	'toggleDisplayStatus',
-				"click .sliderPhoto"				: 	"showSliderPhoto"
+				"click .sliderPhoto"				: 	"showSliderPhoto",
+				'click .numberEdit'					: 	'changeNumber'
 			},
 			templateHelpers: {
 				displayStatus: function () {
@@ -27,16 +28,7 @@ $(document).ready(function () {
 				}
 			},
 			deleteSlider: function () {
-				// console.log(this.model);
-				this.model.destroy({
-					wait: true
-					// success: function (model, response) {
-					// 	// console.log(model);
-					// },
-					// error: function (model, xhr, options) {
-					// 	// console.log(xhr);
-					// }
-				});
+				this.model.destroy();
 			},
 			editSlider: function () {
 				var modal = new Store.Common.Views.ModalView({
@@ -65,6 +57,13 @@ $(document).ready(function () {
 					model: this.model
 				});
 				Store.modalRegion.show(modal);				
+			},
+			changeNumber: function (e) {
+				var collectionSliders = Store.request('slider:collection');
+				var collectionSlidersView = Store.request('slider:collectionView');
+				var step = $(e.target).attr('data-step');
+				var number = 1*this.model.get('number') + 1*step;
+				this.model.set('number', number);
 			}
 		});
 	});
