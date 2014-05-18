@@ -8,7 +8,11 @@ $(document).ready(function () {
 				serial_number: null,
 				parent_id: null,
 				products: null
-			}
+			},
+			initialize: function () {
+				this.id = this.get('id');
+			},
+			urlRoot: "subcategory"
 		});
 	});
 

@@ -3,9 +3,7 @@ $(document).ready(function () {
 	Store.module("Slider.Controllers", function (Controllers, Store, Backbone, Marionette, $, _) {
 		Controllers.SliderController = Marionette.Controller.extend({
 			initialize: function () {
-				this.sliderModel = new Store.Slider.Models.SliderModel({
-
-				});
+				this.sliderModel = new Store.Slider.Models.SliderModel();
 				this.slidersCollection = new Store.Slider.Collections.SlidersCollection({
 					model: this.sliderModel
 				});
@@ -31,7 +29,7 @@ $(document).ready(function () {
 			renderView: function () {
 				this.slidersCollection.fetch();
 				this.slidersCollection.sort();
-				Store.sliderRegion.show(this.slidersCollectionView);	
+				Store.sliderRegion.show(this.slidersCollectionView);
 			}
 			
 		});

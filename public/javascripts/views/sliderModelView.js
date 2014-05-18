@@ -63,7 +63,9 @@ $(document).ready(function () {
 				var collectionSlidersView = Store.request('slider:collectionView');
 				var step = $(e.target).attr('data-step');
 				var number = 1*this.model.get('number') + 1*step;
-				this.model.set('number', number);
+				if( number > 0 ) {
+					this.model.set('number', number);
+				}
 			}
 		});
 	});

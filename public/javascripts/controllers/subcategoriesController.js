@@ -11,23 +11,17 @@ $(document).ready(function () {
 					model: this.subcategoryModel
 				});
 				this.subcategoryCollectionView = new Store.Categories.Views.SubcategoryCollectionView({
-					model: this.subcategoryCollectionView
+					collection: this.subcategoryCollection
 				});
-				Store.reqres.setHandler("subcategories:model", function () {
-					return this.subcategoryModel;
-				},this);
-				Store.reqres.setHandler("subcategories:collection", function () {
-					return this.subcategoryCollection;
-				},this);
-				Store.reqres.setHandler("subcategories:modelView", function () {
-					return this.subcategoryModelView;
-				},this);
-				Store.reqres.setHandler("subcategories:collectionView", function () {
-					return this.subcategoryCollectionView;
-				},this);
 			},
-			renderSubcategories: function () {
-				
+			fetchCollection: function (id, callbackFunction) {
+				this.subcategoryCollection.url = "/subcategories/parent_id/"+id;
+				this.subcategoryCollection.fetch({
+					success: function (data) {
+						callbackFunction(data.toJSON());
+					}
+				});
+				// return this.subcategoryCollection;
 			}
 		});
 

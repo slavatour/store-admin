@@ -4,11 +4,24 @@ $(document).ready(function () {
 		Models.ProductModel = Backbone.Model.extend({
 			defaults: {
 				id: null,
-				category_id: null,
-				name: "",
+				parent_id: null,
+				fullname: "",
+				shortname: "",
 				description: "",
-				price: null,
-				photosUrls: []
+				specification: null, // характеристика
+				pricesType: "", //тип цен (масив: тип цены цена)
+				price: null, //розница (основная цена)
+				photosUrls: null, // масив список названий фото
+				discounts: "", //тип скидки
+				discountsValues: null, //размер скидки
+				brands: null,
+				stock: false, //наличие на складе
+				quantityStock: null,
+				quantityOrders: null, //статистика количество заказов
+				raiting: null, // оценка товара посетителями
+				barcode: null,
+				units: null, //наличие на складе
+				date: null
 			}
 		});
 	});

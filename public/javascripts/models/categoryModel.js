@@ -7,7 +7,11 @@ $(document).ready(function () {
 				name: "noname",
 				serial_number: null,
 				subcategories: null
-			}
+			},
+			initialize: function () {
+				this.id = this.get('id');
+			},
+			urlRoot: "category"
 		});
 	});
 

@@ -4,22 +4,15 @@ $(document).ready(function () {
 		Views.CategoryModelView = Backbone.Marionette.ItemView.extend({
 			template: '#categoriesModelTemplate',
 			initialize: function () {
-				
+				var subcategoriesController = new Store.Categories.Controllers.SubcategoriesController();
+				var fetchedSubcat = subcategoriesController.fetchCollection(this.model.get('id'), function (collection) {
+					console.log(collection);
+				});
+				// this.model.set('subcategories', fetchedSubcat);
 			},
 			templateHelpers: {
-				viewSubcategories: function () {
-					var content = "";
-					if(this.subcategories) {
-						_.each( this.subcategories.toJSON(), function (model) {
-							content += "<a class='subcategoriesLink' data-toggle='modal'"+
-							" data-target='.bs-example-modal-lg' data-submodel-id='"+
-							model.id+"'>"+model.name;
-						});	
-					} else {
-						content = 'There are no any subcategories in this category.';
-					}
-					return content;
-					console.log(this.subcategories);
+				viewSubcategories: function (data) {
+					// console.log(this.subcategories);
 				}
 			},
 			events: {
