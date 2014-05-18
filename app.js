@@ -80,7 +80,7 @@ app.get('/users', user.list);
 app.get('/login', admin.login);
 app.get('/admin', admin.admin);
 
-var conString = process.env.HEROKU_POSTGRESQL_COBALT_URL || 'postgres://postgres:cv251181ojv@localhost/store_db';
+var conString = process.env.HEROKU_POSTGRESQL_OLIVE_URL || 'postgres://postgres:cv251181ojv@localhost/store_db';
 var categoriesController = new CategoriesController.CategoriesController(conString);
 var subcategoriesController = new SubcategoriesController.SubcategoriesController(conString);
 var sliderController = new SliderController.SliderController(conString);
